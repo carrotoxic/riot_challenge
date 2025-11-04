@@ -20,7 +20,6 @@
             overflow: hidden;
         }
 
-        /* Riot-style background */
         .background {
             position: fixed;
             top: 0;
@@ -43,7 +42,6 @@
                 radial-gradient(circle at 70% 80%, rgba(200, 155, 60, 0.05) 0%, transparent 40%);
         }
 
-        /* Hextech diamond pattern */
         .hex-pattern {
             position: fixed;
             top: 0;
@@ -66,11 +64,11 @@
             margin: 0 auto;
         }
 
-        /* Header - Riot style */
+        /* Header */
         .header {
             background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 100%);
             border-bottom: 1px solid rgba(200, 155, 60, 0.3);
-            padding: 24px 48px;
+            padding: 20px 48px;
             backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
@@ -90,22 +88,35 @@
                 transparent 100%);
         }
 
-        .logo-container {
+        .logo-section {
             display: flex;
             align-items: center;
             gap: 20px;
         }
 
+        .yasuo-image {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(11, 198, 227, 0.3));
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
         .logo-icon {
-            width: 48px;
-            height: 48px;
+            width: 42px;
+            height: 42px;
             background: linear-gradient(135deg, #c89b3c 0%, #785a28 100%);
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 20px;
+            font-size: 18px;
             color: #010a13;
             box-shadow: 0 0 20px rgba(200, 155, 60, 0.4);
         }
@@ -117,20 +128,19 @@
 
         .logo {
             font-family: 'Spiegel', 'Inter', sans-serif;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
             color: #c89b3c;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-shadow: 0 0 10px rgba(200, 155, 60, 0.5);
         }
 
         .tagline {
-            font-size: 11px;
+            font-size: 10px;
             color: #5b5a56;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-top: -4px;
+            letter-spacing: 2px;
         }
 
         .status-indicator {
@@ -164,6 +174,17 @@
             letter-spacing: 1px;
         }
 
+        /* Riot disclaimer */
+        .riot-disclaimer {
+            font-size: 9px;
+            color: #5b5a56;
+            text-align: center;
+            padding: 8px 48px;
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(91, 90, 86, 0.2);
+            line-height: 1.4;
+        }
+
         /* Chat area */
         .chat-main {
             flex: 1;
@@ -180,7 +201,6 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
-            mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
         }
 
         .messages-container::-webkit-scrollbar {
@@ -236,14 +256,30 @@
 
         .message-content {
             background: rgba(16, 31, 41, 0.6);
-            padding: 14px 18px;
+            padding: 16px 20px;
             border: 1px solid rgba(91, 90, 86, 0.3);
             border-left: 2px solid #c89b3c;
             max-width: 75%;
-            line-height: 1.7;
+            line-height: 1.8;
             font-size: 14px;
             color: #cdbe91;
             position: relative;
+            white-space: pre-wrap;
+        }
+
+        /* Format numbers and metrics */
+        .message-content strong {
+            color: #c89b3c;
+            font-weight: 600;
+        }
+
+        /* Better paragraph spacing */
+        .message-content p {
+            margin-bottom: 12px;
+        }
+
+        .message-content p:last-child {
+            margin-bottom: 0;
         }
 
         .user-message {
@@ -257,7 +293,6 @@
             color: #a9b7c6;
         }
 
-        /* Tool thinking indicator */
         .tool-thinking {
             display: flex;
             flex-direction: column;
@@ -312,7 +347,6 @@
             30% { transform: scale(1.3); opacity: 1; }
         }
 
-        /* Input area */
         .input-container {
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(200, 155, 60, 0.3);
@@ -395,11 +429,6 @@
             transform: translateY(-1px);
         }
 
-        .send-button:active {
-            transform: translateY(0);
-        }
-
-        /* Welcome message */
         .welcome-message {
             text-align: center;
             padding: 60px 40px;
@@ -439,17 +468,24 @@
     
     <div class="container">
         <div class="header">
-            <div class="logo-container">
-                <div class="logo-icon">G</div>
-                <div class="logo-text">
-                    <div class="logo">GAPGPT</div>
-                    <div class="tagline">Performance Analysis</div>
+            <div class="logo-section">
+                <img src="images/yasuo.jpg" alt="Yasuo" class="yasuo-image">
+                <div class="logo-container">
+                    <div class="logo-icon">G</div>
+                    <div class="logo-text">
+                        <div class="logo">GAPGPT</div>
+                        <div class="tagline">Performance Analysis</div>
+                    </div>
                 </div>
             </div>
             <div class="status-indicator">
                 <div class="status-dot" id="statusDot"></div>
                 <span class="status-text" id="connectionStatus">Initializing</span>
             </div>
+        </div>
+        
+        <div class="riot-disclaimer">
+            GapGPT was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.
         </div>
 
         <div class="chat-main">
@@ -505,11 +541,10 @@
                     const response = JSON.parse(event.data);
                     
                     if (response.type === 'tool') {
-                        // Show tool being used
                         addToolStep(response.content);
                     } else if (response.type === 'chunk' && response.content) {
                         hideTypingIndicator();
-                        displayMessage(response.content, 'assistant');
+                        displayMessage(formatMessage(response.content), 'assistant');
                     } else if (response.type === 'end') {
                         hideTypingIndicator();
                     } else if (response.type === 'error') {
@@ -532,6 +567,19 @@
                 console.error('WebSocket error:', error);
                 updateConnectionStatus('Error', false);
             };
+        }
+        
+        function formatMessage(content) {
+            // Add line breaks for better readability
+            return content
+                // Add breaks after sentences
+                .replace(/\. ([A-Z])/g, '.\n\n$1')
+                // Add breaks before bullet points
+                .replace(/\n- /g, '\n\n• ')
+                // Highlight metrics (numbers with %, +, -, K)
+                .replace(/([+\-]?\d+\.?\d*[%KkMm]?)/g, '<strong>$1</strong>')
+                // Add breaks before "Gap:" sections
+                .replace(/(Gap:|Analysis:|Action:|Recommendation:)/g, '\n\n$1');
         }
         
         function sendMessage() {
@@ -567,7 +615,7 @@
             
             const contentDiv = document.createElement('div');
             contentDiv.className = 'message-content';
-            contentDiv.textContent = content;
+            contentDiv.innerHTML = content;
             
             messageDiv.appendChild(avatar);
             messageDiv.appendChild(contentDiv);
