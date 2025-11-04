@@ -264,7 +264,7 @@
             font-size: 14px;
             color: #cdbe91;
             position: relative;
-            white-space: pre-wrap;
+            white-space: normal;
         }
 
         /* Format numbers and metrics */
@@ -570,16 +570,27 @@
         }
         
         function formatMessage(content) {
-            // Add line breaks for better readability
-            return content
-                // Add breaks after sentences
-                .replace(/\. ([A-Z])/g, '.\n\n$1')
-                // Add breaks before bullet points
-                .replace(/\n- /g, '\n\n• ')
-                // Highlight metrics (numbers with %, +, -, K)
-                .replace(/([+\-]?\d+\.?\d*[%KkMm]?)/g, '<strong>$1</strong>')
-                // Add breaks before "Gap:" sections
-                .replace(/(Gap:|Analysis:|Action:|Recommendation:)/g, '\n\n$1');
+            // Split into lines and format
+            let lines = content.split('\n');
+            let formatted = '';
+            
+            for (let line of lines) {
+                line = line.trim();
+                if (!line) continue;
+                
+                // Highlight numbers
+                line = line.replace(/([+\-]?\d+\.?\d*%?)/g, '<strong>$1</strong>');
+                
+                // Format bullets
+                if (line.startsWith('-') || line.startsWith('•')) {
+                    line = '• ' + line.substring(1).trim();
+                    formatted += '<div style="margin-left: 20px; margin-bottom: 8px;">' + line + '</div>';
+                } else {
+                    formatted += '<div style="margin-bottom: 12px;">' + line + '</div>';
+                }
+            }
+            
+            return formatted;
         }
         
         function sendMessage() {
